@@ -1,6 +1,8 @@
 import msvcrt as m
-k = b'n'
+import os
+k = b't'
 while True:
+    os.system('cls')
     n = int(input("podaj liczbe n:"))
     wynik = 0
     for i in range(100,1000):
@@ -10,5 +12,5 @@ while True:
     print("ilosc liczb:",wynik)
     print("czy chcesz powtorzyc program (T/N)")
     k = m.getch().lower()
-    
-    print(k)
+    if k == b'n':
+        break
