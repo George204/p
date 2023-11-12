@@ -1,7 +1,7 @@
 import msvcrt as m
-kb = 0
 k = b't'
 while True:
+    kb = 0
     n = 100
     while kb != 1:
         try:
