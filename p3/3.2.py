@@ -2,6 +2,7 @@ import math as m
 import random as r
 import os as o
 import msvcrt as ms
+
 def inputh(n):
     while True:
         try:
@@ -46,16 +47,17 @@ def sprawdz(k,g1,g2,o1,o2):
     return o1,o2
 
 def komentarz(x,y,n):
-	gotoxy(x,y)
-	komentarz = ["JESTES SUPER!","SMIALEJ!","NIE PRZESADZAJ!","OJEJ!"]
-	print(komentarz[n])
+    gotoxy(x,y)
+    comment = ["JESTES SUPER!","SMIALEJ!","NIE PRZESADZAJ!","OJEJ!"]
+    print(comment[n])
 
-def main(): 
+def main():
     while True:
         o.system("cls")
         k = los(1,50)
         g1,g2,o1,o2 = 0,0,0,0
         g1 = inputh('1')
+        o.system("cls")
         g2 = inputh('2')
         o.system("cls")
         wyswietl(g1,g2,k)
@@ -67,6 +69,6 @@ def main():
         k = ms.getch().lower()
         if k != b't':
             break
-  
+
 if __name__=="__main__": 
     main()
