@@ -3,18 +3,6 @@ import random as r
 import os as o
 import msvcrt as ms
 
-def inputh(n):
-    while True:
-        try:
-            x = int(input(f"Gracz {n} podaj liczbe:"))
-            if 0<x and x<50:
-                break
-            else:
-                print("liczba poza zakresem")
-        except ValueError:
-            print("wartosc nieprawidlowa")
-    return x
-
 def gotoxy(x,y):
     print(f"\x1b[{y+1};{x+1}H",end='')
 
@@ -24,8 +12,8 @@ def gwiazdki(x,y,n):
         print("*",end='')
     print()
 
-def los(a,b):
-    return r.randint(1,50)
+def los(a):
+    return r.randint(1,a)
 
 def wyswietl(g1,g2,k):
     print("g1:\ng2:\nk :")
@@ -51,20 +39,44 @@ def komentarz(x,y,n):
     comment = ["JESTES SUPER!","SMIALEJ!","NIE PRZESADZAJ!","OJEJ!"]
     print(comment[n])
 
+def pytaj(x,y,maxx,g):
+    o.system("cls")
+    gotoxy(x,y)
+    while True:
+        try:
+            l = int(input(f"Gracz {g} podaj liczbe od 1 do {maxx}:"))
+            if 0<l and l<50:
+                break
+            else:
+                print("liczba poza zakresem")
+        except ValueError:
+            print("wartosc nieprawidlowa")
+    return l
+
+def kto_wygral(o1,o2):
+    if o1 == 0:
+        return "gracz 1"
+    elif o2 == 0:
+        return "gracz 2"
+    elif o1 == o2 and o2 == 3:
+        return "remis"
+    else:
+        return "nikt"
+
 def main():
     while True:
         o.system("cls")
-        k = los(1,50)
+        k = los(50)
         g1,g2,o1,o2 = 0,0,0,0
-        g1 = inputh('1')
-        o.system("cls")
-        g2 = inputh('2')
+        g1 = pytaj(0,0,50,'1')
+        g2 = pytaj(0,0,50,'2')
         o.system("cls")
         wyswietl(g1,g2,k)
         o1,o2 = sprawdz(k,g1,g2,o1,o2)
         print("g1:\ng2:")
         komentarz(3,3,o1)
         komentarz(3,4,o2)
+        print(f"wygral {kto_wygral(o1,o2)}")
         print("czy chcesz powtorzyc program (T/N)")
         k = ms.getch().lower()
         if k != b't':
